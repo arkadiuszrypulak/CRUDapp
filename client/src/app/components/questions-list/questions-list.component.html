@@ -1,8 +1,62 @@
-<div *ngIf="questions">
-    <h2>Lista pytań:</h2>
-    <ul>
-      <li *ngFor="let question of questions">
-        {{ question.text }} <!-- Załóżmy, że tekst pytania znajduje się w polu 'text' -->
-      </li>
-    </ul>
+<div *ngIf="!quizStarted">
+  <label for="userName">Podaj swoje imię:</label>
+  <input type="text" id="userName" [(ngModel)]="userName" />
+  <button (click)="startQuiz()">Rozpocznij quiz</button>
+</div>
+<div *ngIf="quizStarted && !quizFinished">
+  <div *ngIf="questions">
+    <h2>Quiz</h2>
+    <div
+      *ngFor="let question of questions; let i = index"
+      [hidden]="i !== currentQuestionIndex"
+    >
+      <h3>{{ question.question.text }}</h3>
+      <ul>
+        <li *ngFor="let answer of shuffleAnswers(question)">
+          <input
+            type="radio"
+            id="{{ answer }}"
+            name="answers"
+            (change)="selectAnswer(answer)"
+            [checked]="isAnswerSelected(answer)"
+          />
+          <label for="{{ answer }}">{{ answer }}</label>
+        </li>
+      </ul>
+    </div>
+    <button (click)="prevQuestion()" [disabled]="currentQuestionIndex === 0">
+      Poprzednie pytanie
+    </button>
+    <button
+      (click)="nextQuestion()"
+      [disabled]="currentQuestionIndex === questions.length - 1"
+    >
+      Następne pytanie
+    </button>
+    <button
+      (click)="finishQuiz()"
+      [hidden]="currentQuestionIndex !== questions.length - 1"
+    >
+      Zakończ quiz
+    </button>
+    <button
+      (click)="restartQuiz()"
+      [hidden]="currentQuestionIndex !== questions.length - 1"
+    >
+      Rozpocznij od nowa
+    </button>
   </div>
+</div>
+<div *ngIf="quizFinished">
+  <p>
+    Quiz zakończony! Twój wynik: {{ correctAnswersCount }}/{{
+      questions.length
+    }}
+  </p>
+  <button
+      (click)="restartQuiz()"
+      [hidden]="currentQuestionIndex !== questions.length - 1"
+    >
+      Rozpocznij od nowa
+    </button>
+</div>

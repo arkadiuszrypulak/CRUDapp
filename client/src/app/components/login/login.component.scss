@@ -1,0 +1,40 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+  h2 {
+    margin-bottom: 20px;
+  }
+
+  .error-message {
+    color: red;
+    margin-bottom: 10px;
+  }
+
+  .login-header {
+    color: #fff;
+  }
+
+  form {
+    width: 300px;
+
+    .form-group {
+      margin-bottom: 15px;
+
+      label {
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      mat-form-field {
+        width: 100%;
+      }
+    }
+
+    button[type='submit'] {
+      width: 100%;
+    }
+  }
+}

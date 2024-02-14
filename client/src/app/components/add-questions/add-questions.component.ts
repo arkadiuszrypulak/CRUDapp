@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { QuestionService } from '../../services/question.service';
 import { FormsModule } from '@angular/forms';
-
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-add-questions',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './add-questions.component.html',
   styleUrls: ['./add-questions.component.scss'],
 })
@@ -22,8 +22,8 @@ export class AddQuestionsComponent {
       this.successMessage = 'Pytanie zostało dodane!';
       this.newQuestion = {};
       setTimeout(() => {
-        this.successMessage = ''; // Usuwa wiadomość o sukcesie po kilku sekundach
-      }, 3000); // Ustaw czas w milisekundach
+        this.successMessage = ''; 
+      }, 3000); 
     } catch (error) {
       console.error(error);
       this.errorMessage = 'Wystąpił błąd podczas dodawania pytania.';

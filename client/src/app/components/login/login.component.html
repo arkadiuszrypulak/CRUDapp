@@ -1,27 +1,25 @@
-<div class="login-container">
-  <h2>Logowanie</h2>
-  <div class="error-message" *ngIf="errorMessage">{{ errorMessage }}</div>
-  <form (ngSubmit)="login()">
-    <div class="form-group">
-      <label for="username">Nazwa użytkownika:</label>
-      <input
-        type="text"
-        id="username"
-        name="username"
-        [(ngModel)]="username"
-        required
-      />
-    </div>
-    <div class="form-group">
-      <label for="password">Hasło:</label>
-      <input
-        type="password"
-        id="password"
-        name="password"
-        [(ngModel)]="password"
-        required
-      />
-    </div>
-    <button type="submit">Zaloguj się</button>
-  </form>
+<div class="container">
+  <mat-card class="login-card">
+    <mat-card-header class="login-header">
+      <mat-card-title>Logowanie</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="error-message" *ngIf="errorMessage">{{ errorMessage }}</div>
+      <form class="form" (ngSubmit)="login()">
+        <div class="form-group">
+          <mat-form-field appearance="fill">
+            <mat-label>Nazwa użytkownika:</mat-label>
+            <input matInput type="text" [(ngModel)]="username" name="username" required>
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+          <mat-form-field appearance="fill">
+            <mat-label>Hasło:</mat-label>
+            <input matInput type="password" [(ngModel)]="password" name="password" required>
+          </mat-form-field>
+        </div>
+        <button mat-raised-button color="primary" type="submit">Zaloguj się</button>
+      </form>
+    </mat-card-content>
+  </mat-card>
 </div>

@@ -42,7 +42,7 @@ export class AppComponent {
     if (this.isLoggedIn) {
       localStorage.removeItem('isLoggedIn');
       this.isLoggedIn = false;
-      this.router.navigate(['/signin']);
+      this.router.navigate(['/questions']);
     } else {
       this.router.navigate(['/signin']);
     }
