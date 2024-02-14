@@ -1,1 +1,12 @@
-<p>add-questions works!</p>
+<form (ngSubmit)="onSubmit()">
+  <div>
+    <label for="questionText">Treść pytania:</label>
+    <input type="text" id="questionText" [(ngModel)]="newQuestion.text" name="text" required>
+  </div>
+  <div>
+    <label for="questionCategory">Kategoria pytania:</label>
+    <input type="text" id="questionCategory" [(ngModel)]="newQuestion.category" name="category">
+  </div>
+  <button type="submit">Dodaj pytanie</button>
+  <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
+</form>

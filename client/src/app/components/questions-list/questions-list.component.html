@@ -1,1 +1,8 @@
-<p>questions-list works!</p>
+<div *ngIf="questions">
+    <h2>Lista pytań:</h2>
+    <ul>
+      <li *ngFor="let question of questions">
+        {{ question.text }} <!-- Załóżmy, że tekst pytania znajduje się w polu 'text' -->
+      </li>
+    </ul>
+  </div>
