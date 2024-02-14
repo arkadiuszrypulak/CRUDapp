@@ -1,12 +1,20 @@
-  <form (ngSubmit)="onSubmit()">
-  <div>
-    <label for="questionText">Treść pytania:</label>
-    <input type="text" id="questionText" [(ngModel)]="newQuestion.text" name="text" required>
-  </div>
-  <div>
-    <label for="questionCategory">Kategoria pytania:</label>
-    <input type="text" id="questionCategory" [(ngModel)]="newQuestion.category" name="category">
-  </div>
-  <button type="submit">Dodaj pytanie</button>
+<form (ngSubmit)="onSubmit()" #questionForm="ngForm" class="add-questions-form">
+  <mat-form-field>
+    <mat-label>Treść pytania</mat-label>
+    <input matInput type="text" id="questionText" [(ngModel)]="newQuestion.question.text" name="text" required>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Poprawna odpowiedź</mat-label>
+    <input matInput type="text" id="correctAnswer" [(ngModel)]="newQuestion.correctAnswer" name="correctAnswer" required>
+  </mat-form-field>
+
+  <mat-form-field *ngFor="let answer of newQuestion.incorrectAnswers; let i = index; trackBy: trackByIndex">
+    <mat-label>Odpowiedź {{i+1}}</mat-label>
+    <input matInput type="text" id="incorrectAnswer{{i}}" [(ngModel)]="newQuestion.incorrectAnswers[i]" name="incorrectAnswer{{i}}" required>
+    <mat-error *ngIf="questionForm.submitted && !questionForm.controls['incorrectAnswer' + i]?.valid">To pole jest wymagane</mat-error>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit" [disabled]="!questionForm.valid">Dodaj pytanie</button>
   <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
 </form>
