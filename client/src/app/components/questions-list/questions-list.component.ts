@@ -1,12 +1,28 @@
+// imports Angular
 import { Component, OnInit } from '@angular/core';
-import { QuestionService } from '../../services/question.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+//imports Angular Material
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatCardModule } from '@angular/material/card';
+import { MatRadioModule } from '@angular/material/radio';
+//import Service
+import { QuestionService } from '../../services/question.service';
 
 @Component({
   selector: 'app-questions-list',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    MatButtonModule,
+    MatInputModule,
+    MatDividerModule,
+    MatCardModule,
+    MatRadioModule
+  ],
   templateUrl: './questions-list.component.html',
   styleUrls: ['./questions-list.component.scss'],
 })

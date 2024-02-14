@@ -6,13 +6,21 @@ import { Router } from '@angular/router';
 //angular material
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import {MatButtonModule} from '@angular/material/button';
-import {MatInputModule} from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, FormsModule, MatCardModule, MatFormFieldModule, MatButtonModule, MatInputModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    MatInputModule,
+  ],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
@@ -22,7 +30,11 @@ export class LoginComponent {
   errorMessage: string = '';
   isLoggedIn: boolean = false;
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private snackBar: MatSnackBar
+  ) {}
 
   login() {
     const credentials = {
@@ -35,10 +47,16 @@ export class LoginComponent {
         if (response) {
           this.isLoggedIn = true;
           localStorage.setItem('isLoggedIn', 'true');
+          this.snackBar.open('Zalogowano pomyślnie!', 'Zamknij', {
+            duration: 2000,
+          });
           this.router.navigate(['/questions']);
         } else {
           this.isLoggedIn = false;
           localStorage.removeItem('isLoggedIn');
+          this.snackBar.open('Błąd podczas logowania, sprawdź wporowadzone dane!', 'Zamknij', {
+            duration: 2000,
+          });
           this.errorMessage = 'Nieprawidłowe dane logowania';
         }
       },

@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 //imports Angular Material
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSnackBar } from '@angular/material/snack-bar';
 //import Services
 import { QuestionService } from '../../services/question.service';
 
@@ -24,23 +25,35 @@ export class AddQuestionsComponent {
   successMessage: string = '';
   errorMessage: string = '';
 
-  constructor(private questionService: QuestionService, private router: Router) {}
+  constructor(
+    private questionService: QuestionService,
+    private router: Router,
+    private snackBar: MatSnackBar
+  ) {}
 
   onSubmit(): void {
     try {
       this.questionService.addQuestion(this.newQuestion);
-      this.successMessage = 'Pytanie zostało dodane!';
+      this.snackBar.open('Pytanie zostało dodane!', 'Zamknij', {
+        duration: 3000,
+      });
       this.newQuestion = {
         question: {},
         incorrectAnswers: ['', '', ''],
       };
       setTimeout(() => {
         this.successMessage = '';
-        this.router.navigateByUrl('/questions')
+        this.router.navigateByUrl('/questions');
       }, 3000);
     } catch (error) {
       console.error(error);
-      this.errorMessage = 'Wystąpił błąd podczas dodawania pytania.';
+      this.snackBar.open(
+        'Wystąpił błąd podczas dodawania pytania.',
+        'Zamknij',
+        {
+          duration: 3000,
+        }
+      );
     }
   }
 
