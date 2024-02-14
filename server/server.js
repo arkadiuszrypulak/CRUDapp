@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const axios = require("axios");
+const bodyParser = require("body-parser");
 
 const app = express();
 
@@ -8,6 +9,9 @@ let corsOptions = {
   origin: "http://localhost:4200",
 };
 
+const adminCredentials = [{ username: "admin", password: "admin" }];
+
+app.use(bodyParser.json());
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -24,6 +28,20 @@ app.get("/test", async (req, res) => {
   } catch (error) {
     console.error("Something went wrong!", error);
     res.status(500).send("Error during fetch data");
+  }
+});
+
+app.post("/signin", (req, res) => {
+  const { username, password } = req.body;
+
+  const isAdmin = adminCredentials.find(
+    (user) => user.username === username && user.password === password
+  );
+
+  if (isAdmin) {
+    res.json(true);
+  } else {
+    res.json(false);
   }
 });
 
