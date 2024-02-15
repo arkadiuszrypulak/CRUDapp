@@ -1,0 +1,33 @@
+.question-details {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  width: 80%;
+
+  .new-question-btn {
+    background-color: green;
+    color: #fff;
+    width: 25%;
+    margin: 10px auto;
+  }
+
+  .question-details-list {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin: 5px 0;
+
+    .question-title {
+        display: flex;
+        align-items: center;
+    }
+
+    .question-details-btn {
+      width: 25%;
+      display: flex;
+      gap: 10px;
+    }
+
+    
+  }
+}

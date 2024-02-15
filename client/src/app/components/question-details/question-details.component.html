@@ -1,0 +1,23 @@
+<div class="question-details">
+  <button mat-raised-button class="new-question-btn" (click)="addNewQuestion()">
+    <mat-icon>add</mat-icon>NOWE PYTANIE
+  </button>
+  <mat-divider></mat-divider>
+  <div *ngFor="let question of questions; let i = index">
+    <div class="question-details-list">
+        <div class="question-title">{{ question.question.text }}</div>
+
+        <div class="question-details-btn">
+          <button mat-fab class="accent" (click)="editQuestion(question.id)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-fab color="warn" (click)="deleteQuestion(i)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </div>
+    
+
+    </div>
+    
+</div>

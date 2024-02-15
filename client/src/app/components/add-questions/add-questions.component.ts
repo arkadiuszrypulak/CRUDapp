@@ -10,6 +10,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 //import Services
 import { QuestionService } from '../../services/question.service';
 
+import { v4 as uuidv4 } from 'uuid';
+
 @Component({
   selector: 'app-add-questions',
   standalone: true,
@@ -33,6 +35,7 @@ export class AddQuestionsComponent {
 
   onSubmit(): void {
     try {
+      this.newQuestion.id = uuidv4();
       this.questionService.addQuestion(this.newQuestion);
       this.snackBar.open('Pytanie zostało dodane!', 'Zamknij', {
         duration: 3000,

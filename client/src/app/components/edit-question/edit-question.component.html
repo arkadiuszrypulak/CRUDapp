@@ -1,0 +1,24 @@
+<div class="edit-question-container">
+    <h2>Edit Question</h2>
+    <form [formGroup]="questionForm" (ngSubmit)="updateQuestion()">
+      <div>
+        <label for="text">Question Text:</label>
+        <input type="text" id="text" formControlName="text" required>
+      </div>
+      <div>
+        <label for="category">Category:</label>
+        <input type="text" id="category" formControlName="category">
+      </div>
+      <div>
+        <label for="correctAnswer">Correct Answer:</label>
+        <input type="text" id="correctAnswer" formControlName="correctAnswer">
+      </div>
+      <div>
+        <label for="incorrectAnswers">Incorrect Answers:</label>
+        <input type="text" id="incorrectAnswers" formControlName="incorrectAnswers">
+      </div>
+  
+      <button type="submit" [disabled]="questionForm.invalid">Update Question</button>
+    </form>
+  </div>
+  
