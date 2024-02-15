@@ -1,0 +1,21 @@
+.edit-question-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #797777;
+    height: 100%;
+
+    .edit-questions-form {
+        display: flex;
+        flex-direction: column;
+        align-items: center; 
+        justify-content: center; 
+        height: 100%; 
+        width: 100%;
+      }
+      
+      mat-form-field {
+        width: 60%; 
+      }
+}

@@ -1,6 +1,14 @@
 <mat-toolbar>
   <span>Q&A APP</span>
+  <ul class="menu">
+    <li><a href="/questions">Q&A</a></li>
+    <li><a href="/ranking">Ranking</a></li>
+    <li *ngIf="isLoggedIn"><a href="/questions-details">Pytania</a></li>
+  </ul>
   <span class="example-spacer"></span>
+  <button mat-raised-button color="green" (click)="addQuestion()">
+    Dodaj pytanie
+  </button>
   <button mat-raised-button color="primary" (click)="loginOrLogout()">
     {{ isLoggedIn ? "Wyloguj" : "Zaloguj" }}
   </button>

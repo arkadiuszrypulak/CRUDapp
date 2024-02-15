@@ -1,10 +1,15 @@
-.quiz-starter {
+main {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  background-color: #797777;
   height: 100%;
-}
+
+  .quiz-starter {
+    display: flex;
+    flex-direction: column;
+  }
 
 .quiz-container {
   margin: 20px;
@@ -58,4 +63,5 @@ mat-divider {
       font-size: 700;
     }
   }
+}
 }

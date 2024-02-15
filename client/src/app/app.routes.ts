@@ -1,3 +1,4 @@
+import { RankingComponent } from './components/ranking/ranking.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { QuestionsListComponent } from './components/questions-list/questions-list.component';
@@ -11,13 +12,18 @@ export const routes: Routes = [
   { path: '', redirectTo: 'questions', pathMatch: 'full' },
   { path: 'questions', component: QuestionsListComponent },
   { path: 'signin', component: LoginComponent },
+  { path: 'ranking', component: RankingComponent },
   { path: 'add', component: AddQuestionsComponent, canActivate: [AuthGuard] },
   {
     path: 'questions-details',
     component: QuestionDetailsComponent,
     canActivate: [AuthGuard],
   },
-  { path: 'edit-question/:id', component: EditQuestionComponent, canActivate: [AuthGuard]}
+  {
+    path: 'edit-question/:id',
+    component: EditQuestionComponent,
+    canActivate: [AuthGuard],
+  },
 ];
 
 @NgModule({

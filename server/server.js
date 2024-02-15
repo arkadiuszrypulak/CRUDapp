@@ -20,7 +20,7 @@ app.get("/", (req, res) => {
   res.json({ message: "Backend is running!" });
 });
 
-app.get("/test", async (req, res) => {
+app.get("/questions", async (req, res) => {
   try {
     const response = await axios.get("https://the-trivia-api.com/v2/questions");
     const questions = response.data;

@@ -1,50 +1,89 @@
-<div *ngIf="!quizStarted" class="quiz-starter">
-  <mat-form-field>
-    <mat-label>Podaj swoje imię:</mat-label>
-    <input matInput type="text" id="userName" [(ngModel)]="userName" name="text" required>
-  </mat-form-field>
-  <button mat-raised-button color="primary" (click)="startQuiz()" >Rozpocznij quiz</button>
-</div>
-<div *ngIf="quizStarted && !quizFinished" class="quiz-container">
-  <div *ngIf="questions" class="quiz-question">
-    <mat-card>
-      <h2>Quiz</h2>
-      <mat-divider></mat-divider>
-      <div *ngFor="let question of questions; let i = index" [hidden]="i !== currentQuestionIndex">
-        <h3>{{ question.question.text }}</h3>
-        <ul class="answers-list">
-          <li *ngFor="let answer of shuffleAnswers(question)">
-            <mat-radio-button
-              id="{{ answer }}"
-              name="answers"
-              (change)="selectAnswer(answer)"
-              [checked]="isAnswerSelected(answer)"
-            >{{ answer }}</mat-radio-button>
-          </li>
-        </ul>
-      </div>
-      <mat-divider></mat-divider>
-      <div class="btn-container">
-      <button mat-button  (click)="prevQuestion()" [disabled]="currentQuestionIndex === 0">Poprzednie pytanie</button>
-      <button mat-button (click)="nextQuestion()" [disabled]="currentQuestionIndex === questions.length - 1">Następne pytanie</button>
-      <button mat-button (click)="finishQuiz()" [hidden]="currentQuestionIndex !== questions.length - 1">Zakończ quiz</button>
-      <button mat-button (click)="restartQuiz()" [hidden]="currentQuestionIndex !== questions.length - 1">Rozpocznij od nowa</button>
-      </div>
-     
-    </mat-card>
+<main>
+  <div *ngIf="!quizStarted" class="quiz-starter">
+    <mat-form-field>
+      <mat-label>Podaj swoje imię:</mat-label>
+      <input
+        matInput
+        type="text"
+        id="userName"
+        [(ngModel)]="userName"
+        name="text"
+        required
+      />
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="startQuiz()">
+      Rozpocznij quiz
+    </button>
   </div>
-</div>
+  <div *ngIf="quizStarted && !quizFinished" class="quiz-container">
+    <div *ngIf="questions" class="quiz-question">
+      <mat-card>
+        <h2>Quiz</h2>
+        <mat-divider></mat-divider>
+        <div
+          *ngFor="let question of questions; let i = index"
+          [hidden]="i !== currentQuestionIndex"
+        >
+          <h3>{{ question.question.text }}</h3>
+          <ul class="answers-list">
+            <li *ngFor="let answer of shuffleAnswers(question)">
+              <mat-radio-button
+                id="{{ answer }}"
+                name="answers"
+                (change)="selectAnswer(answer)"
+                [checked]="isAnswerSelected(answer)"
+                >{{ answer }}</mat-radio-button
+              >
+            </li>
+          </ul>
+        </div>
+        <mat-divider></mat-divider>
+        <div class="btn-container">
+          <button
+            mat-button
+            (click)="prevQuestion()"
+            [disabled]="currentQuestionIndex === 0"
+          >
+            Poprzednie pytanie
+          </button>
+          <button
+            mat-button
+            (click)="nextQuestion()"
+            [disabled]="currentQuestionIndex === questions.length - 1"
+          >
+            Następne pytanie
+          </button>
+          <button
+            mat-button
+            (click)="finishQuiz()"
+            [hidden]="currentQuestionIndex !== questions.length - 1"
+          >
+            Zakończ quiz
+          </button>
+          <button
+            mat-button
+            (click)="restartQuiz()"
+            [hidden]="currentQuestionIndex !== questions.length - 1"
+          >
+            Rozpocznij od nowa
+          </button>
+        </div>
+      </mat-card>
+    </div>
+  </div>
 
-<div *ngIf="quizFinished" class="finished-view">
-  <p>
-    Quiz zakończony! Twój wynik: <span>{{ correctAnswersCount }}/{{
-      questions.length
-    }}</span>
-  </p>
-  <button mat-raised-button color="primary"
+  <div *ngIf="quizFinished" class="finished-view">
+    <p>
+      Quiz zakończony! Twój wynik:
+      <span>{{ correctAnswersCount }}/{{ questions.length }}</span>
+    </p>
+    <button
+      mat-raised-button
+      color="primary"
       (click)="restartQuiz()"
       [hidden]="currentQuestionIndex !== questions.length - 1"
     >
       Rozpocznij od nowa
     </button>
-</div>
+  </div>
+</main>

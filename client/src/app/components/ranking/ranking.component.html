@@ -1,0 +1,16 @@
+<main class="ranking-main">
+  <div *ngIf="rankingData && rankingData.length">
+    <h2>Ranking</h2>
+    <mat-list role="list">
+      <mat-list-item
+        role="listitem"
+        *ngFor="let item of rankingData; let i = index"
+        >{{ i + 1 }}. {{ item.userName }} -
+        {{ item.correctAnswersCount }} punktów <mat-divider></mat-divider
+      ></mat-list-item>
+    </mat-list>
+  </div>
+  <div *ngIf="!rankingData || !rankingData.length">
+    <p>Brak wyników do wyświetlenia.</p>
+  </div>
+</main>

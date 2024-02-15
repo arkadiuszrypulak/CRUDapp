@@ -50,13 +50,17 @@ export class LoginComponent {
           this.snackBar.open('Zalogowano pomyślnie!', 'Zamknij', {
             duration: 2000,
           });
-          this.router.navigate(['/questions']);
+          this.router.navigate(['/questions-details']);
         } else {
           this.isLoggedIn = false;
           localStorage.removeItem('isLoggedIn');
-          this.snackBar.open('Błąd podczas logowania, sprawdź wporowadzone dane!', 'Zamknij', {
-            duration: 2000,
-          });
+          this.snackBar.open(
+            'Błąd podczas logowania, sprawdź wporowadzone dane!',
+            'Zamknij',
+            {
+              duration: 2000,
+            }
+          );
           this.errorMessage = 'Nieprawidłowe dane logowania';
         }
       },

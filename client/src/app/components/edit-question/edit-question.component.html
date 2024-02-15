@@ -1,24 +1,66 @@
 <div class="edit-question-container">
-    <h2>Edit Question</h2>
-    <form [formGroup]="questionForm" (ngSubmit)="updateQuestion()">
-      <div>
-        <label for="text">Question Text:</label>
-        <input type="text" id="text" formControlName="text" required>
-      </div>
-      <div>
-        <label for="category">Category:</label>
-        <input type="text" id="category" formControlName="category">
-      </div>
-      <div>
-        <label for="correctAnswer">Correct Answer:</label>
-        <input type="text" id="correctAnswer" formControlName="correctAnswer">
-      </div>
-      <div>
-        <label for="incorrectAnswers">Incorrect Answers:</label>
-        <input type="text" id="incorrectAnswers" formControlName="incorrectAnswers">
-      </div>
-  
-      <button type="submit" [disabled]="questionForm.invalid">Update Question</button>
-    </form>
-  </div>
-  
+  <h2>Edit Question</h2>
+  <form
+    [formGroup]="questionForm"
+    (ngSubmit)="updateQuestion()"
+    class="edit-questions-form"
+  >
+    <mat-form-field>
+      <mat-label>Treść pytania</mat-label>
+      <input matInput type="text" id="text" formControlName="text" required />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Poprawna odpowiedź</mat-label>
+      <input
+        matInput
+        type="text"
+        id="correctAnswer"
+        formControlName="correctAnswer"
+        required
+      />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Odpowiedź 1</mat-label>
+      <input
+        matInput
+        type="text"
+        id="incorrectAnswer1"
+        formControlName="incorrectAnswer1"
+        required
+      />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Odpowiedź 2</mat-label>
+      <input
+        matInput
+        type="text"
+        id="incorrectAnswer2"
+        formControlName="incorrectAnswer2"
+        required
+      />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Odpowiedź 3</mat-label>
+      <input
+        matInput
+        type="text"
+        id="incorrectAnswer3"
+        formControlName="incorrectAnswer3"
+        required
+      />
+    </mat-form-field>
+
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="questionForm.invalid"
+    >
+      Update Question
+    </button>
+  </form>
+</div>

@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 //Angular Material imports
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -19,6 +20,7 @@ import { CoreModule } from './core.module';
     MatIconModule,
     FormsModule,
     CoreModule,
+    CommonModule,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -45,6 +47,12 @@ export class AppComponent {
       this.router.navigate(['/questions']);
     } else {
       this.router.navigate(['/signin']);
+    }
+  }
+
+  addQuestion() {
+    if (this.isLoggedIn) {
+      this.router.navigate(['/add']);
     }
   }
 }

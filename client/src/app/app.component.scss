@@ -1,3 +1,16 @@
 .example-spacer {
   flex: 1 1 auto;
 }
+
+.menu{ 
+  display: flex;
+  gap: 20px;
+
+  li {
+    list-style: none;
+
+  a  {
+    color: #fff;
+    text-decoration: none;
+  }
+}}
